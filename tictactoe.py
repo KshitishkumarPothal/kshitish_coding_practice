@@ -4,3 +4,17 @@
 # These parameters are two marks on the tic-tac-toe board. 
 # The function should return the number of the spot that can block these two spots from winning the game.
 
+def block_win(pos1, pos2):
+    # All winning combinations
+    winning_lines = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],  # rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],  # columns
+        [0, 4, 8], [2, 4, 6]              # diagonals
+    ]
+    
+    for line in winning_lines:
+        if pos1 in line and pos2 in line:
+            third = [x for x in line if x != pos1 and x != pos2]
+            if third:
+                return third[0]
+    return None
